@@ -1,6 +1,6 @@
 # ReDrobe
 
-Brief summary
+## Brief summary
 
 ReDrobe is a comprehensive digital wardrobe management platform designed
 to reduce fashion waste, curb impulsive spending, and optimize personal style. Users digitally
@@ -12,15 +12,10 @@ habits into insights, while a community board, marketplace integration, and an A
 help users find new outfit ideas and give unused clothing a second life through resale, donation,
 or upcycling.
 
-
-Member
+## Member
 
 1.Nada Khan
-
 2.Ke An Lo
-
 3.Trinity Ma
-
 4.Narawit Sawatdecha
-
 5.Rohit Sivakumar
