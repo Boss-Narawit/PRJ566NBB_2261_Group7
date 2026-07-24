@@ -1,10 +1,26 @@
 # ReDrobe Live Demo Script
 
-Tap-by-tap script for the live-app portion of the 15-minute pitch. Pairs with the
-Figma deck (13 slides) — timestamps assume ~2.5 min of talking (slides 1–4) before
-the demo starts, and ~2.5 min of talking (slides 10–13) after it ends.
+Tap-by-tap script for a **pure live-app demo** — no slides. Open with a short spoken
+intro (below), then drive the whole pitch inside the running app.
 
 Demo account: **demo@redrobe.app / Demo2026pitch**
+
+---
+
+## 0. Spoken intro (~1.5 min, no app yet)
+
+Say this before the app is on screen — set up the problem and the one-line pitch, then
+switch to the app and let the product carry the rest:
+
+- **The problem:** people buy clothes they already own, forget what's in their closet,
+  and toss wearable items in the bin. Wardrobes are full but underused.
+- **ReDrobe in one line:** a digital wardrobe that tracks what you actually wear, warns
+  you before you buy a duplicate, and routes items you're done with to resale or donation
+  instead of landfill.
+- **The loop, four moves:** catalog every item → see what you really wear → get an AI
+  duplicate check + a 24h cooldown before you buy → export what you're finished with.
+- Then say: "Rather than walk you through slides, let me just show you the app." Hand off
+  straight into the Dashboard.
 
 ---
 
@@ -18,7 +34,7 @@ Demo account: **demo@redrobe.app / Demo2026pitch**
    check picks from the photo library, not a camera. Drag a camel/beige coat photo
    onto the running simulator window (it lands in Photos automatically). Do this
    _before_ opening the app, not mid-demo.
-6. Fresh data: `node scripts/seedDemoAccount.js`, then verify: `node scripts/verifyDemoAccount.js` (expect 22 PASS)
+6. Fresh data: `node scripts/seedDemoAccount.js`, then verify: `node scripts/verifyDemoAccount.js` (expect all 23 PASS)
 7. Log in as the demo account. Leave the app open on the **Dashboard** (home tab).
 8. Know your tab bar — icons only, no text labels, left to right:
    **home** (Dashboard/Wardrobe/Wear History/Export) · **compass** (new AI similarity
@@ -28,7 +44,7 @@ Demo account: **demo@redrobe.app / Demo2026pitch**
 
 ## 1. Dashboard tour (~1 min)
 
-_(bridges from slide 4 — "one loop, four moves")_
+_(this is where you land after the spoken intro — "one loop, four moves")_
 
 - You're on the Dashboard. Point at the stat cards: **Total Items**, forgotten count,
   and the **Wardrobe Utilization** bar (90-day window, BR24).
@@ -40,10 +56,10 @@ _(bridges from slide 4 — "one loop, four moves")_
 
 ## 2. Digital Wardrobe + multi-photo items (~2 min)
 
-_(slide 5 — "Every item, one place")_
+_("Every item, one place")_
 
 1. Tap **"See All"** next to My Wardrobe → lands on **My Wardrobe** screen.
-2. Point out the grid — 11 active items. Archived and exported items are _not_ here
+2. Point out the grid — 12 active items. Archived and exported items are _not_ here
    by design (positive status filter — keeps the working closet clean).
 3. Tap **Camel Wool Coat** → opens Item Detail. At the top, **swipe the photo
    gallery** — this item carries several photos, with a **"Cover"** badge on the
@@ -67,7 +83,7 @@ _(slide 5 — "Every item, one place")_
 
 ## 3. Wear Analytics + Forgotten Items (~1.5 min)
 
-_(slide 6 — "Know what you actually wear")_
+_("Know what you actually wear")_
 
 1. From Item Detail or Wardrobe, go back to the home tab root, then navigate to
    **Wear History**.
@@ -84,7 +100,7 @@ _(slide 6 — "Know what you actually wear")_
 
 ## 4. Thoughtful Purchasing — the headline (~3 min)
 
-_(slides 7 + 8 — 24h cooldown, then the AI similarity check — give this the most time)_
+_(24h cooldown, then the AI similarity check — give this the most time)_
 
 **4a. The cooldown timer (cart icon)**
 
@@ -126,7 +142,7 @@ _(slides 7 + 8 — 24h cooldown, then the AI similarity check — give this the 
 
 ## 5. Circular Economy (~2 min)
 
-_(slide 9 — "Nothing ends in the bin")_
+_("Nothing ends in the bin")_
 
 **5a. The resale guardrail (BR21)**
 
@@ -152,10 +168,13 @@ _(slide 9 — "Nothing ends in the bin")_
 
 ---
 
-## Wrap
+## Wrap (~1.5 min, spoken over the app)
 
-Return to the Dashboard before switching back to slides (slide 10 onward is
-talking-only — architecture, status, roadmap, thank you).
+Return to the Dashboard and close on the app itself — no slides. Recap the loop you just
+showed (catalog → wear insight → duplicate check + cooldown → export), then land the
+close verbally: tech stack in one breath (React Native app, Node/Express + MongoDB Atlas
+backend, fashion-clip AI service with Atlas vector search), current status, what's next,
+and thank you. Leave the Dashboard on screen while you talk.
 
 ## Fallbacks
 

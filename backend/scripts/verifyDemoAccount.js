@@ -47,11 +47,11 @@ async function verify() {
   const items = await Clothing.find({ userId: uid });
 
   // Wardrobe (deliverable: catalog + statuses)
-  check('14 clothing items', items.length === 14, `got ${items.length}`);
+  check('15 clothing items', items.length === 15, `got ${items.length}`);
   const byStatus = (s) => items.filter((i) => i.status === s);
   check(
-    '11 Available / 1 Archived / 2 Exported',
-    byStatus('Available').length === 11 &&
+    '12 Available / 1 Archived / 2 Exported',
+    byStatus('Available').length === 12 &&
       byStatus('Archived').length === 1 &&
       byStatus('Exported').length === 2,
     `A=${byStatus('Available').length} Ar=${byStatus('Archived').length} E=${byStatus('Exported').length}`
