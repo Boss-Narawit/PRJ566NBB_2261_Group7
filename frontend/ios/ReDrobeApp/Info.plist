@@ -35,6 +35,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>ReDrobe needs camera access to photograph clothing items you add to your wardrobe.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>ReDrobe connects to the ReDrobe server running on your local network during development.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>RCTNewArchEnabled</key>
