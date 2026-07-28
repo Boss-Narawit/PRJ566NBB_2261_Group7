@@ -46,6 +46,10 @@ export default function ThoughtfulPurchasingScreen({ navigation }: Props) {
   const { token } = useAuth();
   const insets = useSafeAreaInsets();
   const [photo, setPhoto] = useState<string | null>(null);
+  // Width/height ratio of the picked photo, so the preview box can take the
+  // image's real shape instead of a fixed height (which either cropped the
+  // photo or left dead bars around it).
+  const [photoAspect, setPhotoAspect] = useState<number | null>(null);
   const [itemName, setItemName] = useState('');
 
   // Set start date to today, end date to tomorrow
@@ -80,7 +84,13 @@ export default function ThoughtfulPurchasingScreen({ navigation }: Props) {
       },
       response => {
         if (response.assets && response.assets[0]?.uri) {
-          setPhoto(response.assets[0].uri);
+          const asset = response.assets[0];
+          setPhoto(asset.uri!);
+          // The picker reports the asset's pixel dimensions; fall back to null
+          // (portrait default in styles) if a source ever omits them.
+          setPhotoAspect(
+            asset.width && asset.height ? asset.width / asset.height : null,
+          );
         } else if (response.didCancel) {
           // user cancelled the picker — no action needed
         } else {
@@ -158,6 +168,7 @@ export default function ThoughtfulPurchasingScreen({ navigation }: Props) {
       // away. Reset the form and take the user to the Cart, where the timer lives.
       const untilLabel = formatDate(endDate);
       setPhoto(null);
+      setPhotoAspect(null);
       setItemName('');
       setEndDate(tomorrow);
       Alert.alert(
@@ -274,7 +285,13 @@ export default function ThoughtfulPurchasingScreen({ navigation }: Props) {
             onPress={selectPhoto}
           >
             {photo ? (
-              <Image source={{ uri: photo }} style={styles.uploadedImage} />
+              <Image
+                source={{ uri: photo }}
+                style={[
+                  styles.uploadedImage,
+                  photoAspect ? { aspectRatio: photoAspect } : null,
+                ]}
+              />
             ) : (
               <View style={styles.uploadPlaceholder}>
                 <Icon
@@ -458,8 +475,16 @@ const styles = StyleSheet.create({
   },
   uploadedImage: {
     width: '100%',
-    height: 200,
-    resizeMode: 'cover',
+    // The box takes the photo's own aspect ratio (overridden inline from the
+    // picker's reported dimensions), so the image fills the full card width at
+    // its natural height — no crop, no letterbox bars. 3:4 is the portrait
+    // fallback for the rare asset that reports no dimensions.
+    aspectRatio: 3 / 4,
+    // Guards against an extreme panorama-vertical shot pushing the rest of the
+    // form off screen; 'contain' keeps the whole photo visible if it caps.
+    maxHeight: 520,
+    resizeMode: 'contain',
+    backgroundColor: colors.inputBackground,
   },
   dateContainer: {
     flexDirection: 'row',
